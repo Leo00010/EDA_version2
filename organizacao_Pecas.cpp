@@ -8,28 +8,28 @@
 using namespace std;
 
 bool serie_existe(int *numeros_de_series_ja_saidos, int &numero_da_serie) {
-    for (int i = 0; numeros_de_series_ja_saidos[i] != 0; i++) {
-        if (numeros_de_series_ja_saidos[i] == numero_da_serie) {
-            return true;
+    for (int i = 0; numeros_de_series_ja_saidos[i] != 0; i++) { //loop sobre todos os números já saídos diferentes de 0 
+        if (numeros_de_series_ja_saidos[i] == numero_da_serie) { //verifica se o número de série é igual a um número de série que já saiu
+            return true; //se tal se verificar, retorna verdadeiro 
         }
     }
-    return false;
+    return false; //caso contrário retorna falso
 }
 int criar_serie(int *numeros_de_series_ja_saidos, int &tamanho) {
-    int numero_da_serie = (rand() % 9000) + 1000;
-    while (serie_existe(numeros_de_series_ja_saidos, numero_da_serie)) {
-        numero_da_serie = (rand() % 9000) + 1000;
+    int numero_da_serie = (rand() % 9000) + 1000; //gera um número aleatório entre 1000 e 9999
+    while (serie_existe(numeros_de_series_ja_saidos, numero_da_serie)) { //loop que verifica se o número de série já saiu
+        numero_da_serie = (rand() % 9000) + 1000; //caso já exista, gera outro número aleatório 
     }
-    tamanho++;
-    numeros_de_series_ja_saidos[tamanho-1] = numero_da_serie;
-    return numeros_de_series_ja_saidos[tamanho-1];
+    tamanho++; 
+    numeros_de_series_ja_saidos[tamanho-1] = numero_da_serie; //adiciona o novo número de série à ultima posição do array
+    return numeros_de_series_ja_saidos[tamanho-1]; //retorna o último número de série adicionado ao array
 }
 
-bool comparaMarca(const peca& a, const peca& b) {
-    return a.marca < b.marca;
+bool comparaMarca(const peca& a, const peca& b) { 
+    return a.marca < b.marca; //compara as peças pela sua marca e verifica se estão ordenadas por ordem alfabética
 }
 void ordenarPorMarca(peca lista_chegada[],int tamanho_lista_chegada) {
-    sort(lista_chegada, lista_chegada + tamanho_lista_chegada, comparaMarca);
+    sort(lista_chegada, lista_chegada + tamanho_lista_chegada, comparaMarca); //ordena
 }
 
 
